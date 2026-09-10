@@ -20,7 +20,9 @@ Each file is a complete, self-contained HTML page (styles and images inlined) ge
 
 ## Current status
 
-These files are a snapshot of the site as currently published at claude.ai/code/artifact/... (one Artifact per page). **The navigation, header, and footer links in these files still point to those live claude.ai URLs**, not to the sibling files in this repo. That's fine for viewing each page standalone, but if this repo is deployed as the live site (e.g. via GitHub Pages, Netlify, or Vercel), those internal links should be updated to relative paths (`about.html`, `care.html`, etc.) so navigation stays on the new domain instead of bouncing back to claude.ai.
+All internal navigation, header, and footer links now point to the sibling files in this repo (`about.html`, `care.html`, etc.) rather than to claude.ai. This repo is self-contained and ready to deploy as the live site — see **Deploying** below.
+
+**Important — when re-uploading these files to GitHub:** upload the whole `files/` folder together (drag it into the upload box as a folder), not just the two PDFs on their own. If the PDFs land at the repo root instead of inside `files/`, the links in `news.html` (which point to `files/leah-prairie-update-2026-09.pdf`) will 404. If that's already happened, either move the two PDFs into a `files/` folder in the repo, or delete the root-level copies once the `files/` versions are uploaded.
 
 ## files/
 
