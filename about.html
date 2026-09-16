@@ -280,6 +280,32 @@
   details.super-cell[open] .plus{transform:rotate(45deg);}
   details.super-cell .super-bio{padding:0 14px 14px; margin-top:-2px; color:var(--ink-soft); font-size:12.5px; line-height:1.6;}
 
+  /* ---------- publications ---------- */
+  .pubs{margin-top:52px; padding-top:32px; border-top:1px solid var(--line); scroll-margin-top:90px;}
+  .pubs h3{font-size:16px; margin-bottom:16px;}
+  details.pub-group{
+    border:1px solid var(--line); border-radius:12px; background:var(--surface);
+    margin-bottom:10px; padding:0 18px;
+  }
+  details.pub-group summary{
+    cursor:pointer; list-style:none; padding:15px 0;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    font-family:'Work Sans',sans-serif; font-weight:600; font-size:15px;
+  }
+  details.pub-group summary::-webkit-details-marker{display:none;}
+  details.pub-group summary .pub-count{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--ink-faint); font-weight:400; margin-left:8px;}
+  details.pub-group summary .plus{font-family:'JetBrains Mono',monospace; font-size:16px; color:var(--teal); flex:none; transition:transform .15s ease;}
+  details.pub-group[open] summary .plus{transform:rotate(45deg);}
+  .pub-body{padding:2px 0 14px;}
+  a.pub-item{
+    display:block; padding:11px 14px; margin:0 -14px; border-radius:8px;
+    text-decoration:none; color:inherit; transition:background .15s ease;
+  }
+  a.pub-item:hover{background:var(--surface-alt);}
+  a.pub-item b{display:block; font-size:14px; font-family:'Work Sans',sans-serif; font-weight:600;}
+  a.pub-item .pub-meta{display:block; font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--ink-faint); margin-top:3px;}
+  a.pub-item .pub-note{display:block; font-size:12.5px; color:var(--ink-soft); line-height:1.6; margin-top:5px; max-width:70ch;}
+
   /* ---------- cards ---------- */
   .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
   .grid-2{display:grid; grid-template-columns:repeat(2,1fr); gap:22px;}
@@ -665,6 +691,122 @@
             <div class="super-bio">Grew up in Mukono, central Uganda, and trained in medicine at Mbarara University of Science and Technology. Did part of his internship at Kisiizi before completing it at Mulago National Referral Hospital, then returned in 2013 as a Medical Officer. Kisiizi went on to sponsor his postgraduate degree in Obstetrics &amp; Gynaecology, completed in 2018, after which he joined the hospital&rsquo;s management committee. He is married to Ruth, with two children, Hadriel and Henrietta.</div>
           </details>
         </div>
+      <div class="pubs" id="publications">
+        <h3 class="eyebrow" style="color:var(--ink-faint);">Research, film &amp; publications</h3>
+        <p class="supers-hint">Work from Kisiizi has found its way into medical journals, World Health Organization reports and national television. A selection is gathered here &mdash; some of it decades old, all of it part of how this place came to be what it is.</p>
+
+        <details class="pub-group" id="pub-research" open>
+          <summary><span>Research &amp; reports<span class="pub-count">11 items</span></span><span class="plus">+</span></summary>
+          <div class="pub-body">
+            <a class="pub-item" href="https://www.kisiizihospital.org.ug/wp-content/uploadedfiles/2013/10/UHC-PSQ-Learning-Lab-Doc_Final-Issued.pdf" target="_blank" rel="noopener">
+              <b>Universal Health Coverage and Patient Safety &amp; Quality</b>
+              <span class="pub-meta">World Health Organization &middot; 2014 &middot; PDF</span>
+              <span class="pub-note">Kisiizi was one of only five institutions worldwide invited into the WHO Learning Laboratory that produced this report.</span>
+            </a>
+            <a class="pub-item" href="https://www.kisiizihospital.org.ug/wp-content/uploadedfiles/2013/10/ICPIC-Kisiizi-paper-2013.pdf" target="_blank" rel="noopener">
+              <b>Amplification of patient safety and infection prevention systems in southwest Uganda</b>
+              <span class="pub-meta">Antimicrobial Resistance &amp; Infection Control &middot; 2013 &middot; PDF</span>
+              <span class="pub-note">On the power of district-based in-hospital training. Winner of the Implementation Academy Award at the International Conference on Prevention &amp; Infection Control, Geneva, June 2013.</span>
+            </a>
+            <a class="pub-item" href="https://www.kisiizihospital.org.ug/wp-content/uploadedfiles/2013/10/JOURNAL-OF-PUBLIC-HEALTH-IN-AFRICA2017-KISIIZI-STUDY-ATTITUDE-TO-FACILITIES-FOR-LABOR.pdf" target="_blank" rel="noopener">
+              <b>The use of facilities for labour and delivery: the views of women in rural Uganda</b>
+              <span class="pub-meta">Journal of Public Health in Africa &middot; September 2017 &middot; PDF</span>
+              <span class="pub-note">A Kisiizi study asking women in the surrounding communities what shapes their decision about where to give birth.</span>
+            </a>
+            <a class="pub-item" href="http://www.thelancet.com/journals/lancet/article/PIIS0140-6736(16)00168-9/abstract" target="_blank" rel="noopener">
+              <b>Letter to The Lancet on faith-based healthcare</b>
+              <span class="pub-meta">The Lancet &middot; January 2016 &middot; External</span>
+              <span class="pub-note">Written by the Medical Superintendent in response to the journal&rsquo;s series on faith-based health care.</span>
+            </a>
+            <a class="pub-item" href="https://www.kisiizihospital.org.ug/wp-content/uploadedfiles/2019/06/volunteering_in_a_mental_health_service_in_uganda_challenges_and_rewards-1.pdf" target="_blank" rel="noopener">
+              <b>Volunteering in a mental health service in Uganda: challenges and rewards</b>
+              <span class="pub-meta">BJPsych International &middot; 2019 &middot; PDF</span>
+              <span class="pub-note">Dr Fiona Martin&rsquo;s reflections after six months as a visiting registrar in psychiatry at Kisiizi.</span>
+            </a>
+            <a class="pub-item" href="https://www.kisiizihospital.org.ug/wp-content/uploadedfiles/2019/06/Development-of-the-Kisiizi-hospital-health-insurance-scheme-Published-June-2018.pdf" target="_blank" rel="noopener">
+              <b>Development of the Kisiizi Hospital health insurance scheme</b>
+              <span class="pub-meta">Published June 2018 &middot; PDF</span>
+              <span class="pub-note">How the oldest community health insurance scheme in Uganda was built.</span>
+            </a>
+            <a class="pub-item" href="https://www.kisiizihospital.org.ug/wp-content/uploadedfiles/2019/06/KISIIZI-HOSPITAL-HEALTH-INSURANCE-SCHEME-article-08-2018.pdf" target="_blank" rel="noopener">
+              <b>The Kisiizi Hospital health insurance scheme</b>
+              <span class="pub-meta">Published August 2018 &middot; PDF</span>
+              <span class="pub-note">A companion article on how the scheme works in practice and what it covers.</span>
+            </a>
+            <a class="pub-item" href="https://www.kisiizihospital.org.ug/wp-content/uploadedfiles/2019/06/Effect-of-CBHI-on-Child-Health-and-Preventive-Health-thesis-KHIS-reced-9-2018.pdf" target="_blank" rel="noopener">
+              <b>The effect of community-based health insurance on child and preventive health</b>
+              <span class="pub-meta">PhD thesis &middot; 2018 &middot; PDF</span>
+              <span class="pub-note">Doctoral research built on data from the Kisiizi community health insurance scheme.</span>
+            </a>
+            <a class="pub-item" href="https://formative.jmir.org/2018/2/e20/" target="_blank" rel="noopener">
+              <b>Piloting an electronic medical record system in a rural Ugandan hospital</b>
+              <span class="pub-meta">JMIR Formative Research &middot; 2018 &middot; External</span>
+              <span class="pub-note">Findings from the pilot of the Streamline records system in Kisiizi&rsquo;s outpatient department.</span>
+            </a>
+            <a class="pub-item" href="https://link.springer.com/chapter/10.1007/978-3-030-19115-3_26" target="_blank" rel="noopener">
+              <b>Lessons from implementing an electronic medical record system at Kisiizi</b>
+              <span class="pub-meta">Springer &middot; 2019 &middot; External</span>
+              <span class="pub-note">A follow-up chapter drawing on what the Streamline pilot taught the team.</span>
+            </a>
+            <a class="pub-item" href="https://www.kisiizihospital.org.ug/wp-content/uploadedfiles/2013/10/Hsern-Perth-Elective-report.pdf" target="_blank" rel="noopener">
+              <b>Medical student elective report</b>
+              <span class="pub-meta">University of Western Australia &middot; January 2014 &middot; PDF</span>
+              <span class="pub-note">A first-hand account of an elective placement at Kisiizi, useful reading if you are considering one yourself.</span>
+            </a>
+          </div>
+        </details>
+        <details class="pub-group" id="pub-film">
+          <summary><span>Kisiizi on film<span class="pub-count">4 clips</span></span><span class="plus">+</span></summary>
+          <div class="pub-body">
+            <a class="pub-item" href="https://youtu.be/bYFjCeg7qLA" target="_blank" rel="noopener">
+              <b>Kisiizi: an overview</b>
+              <span class="pub-meta">YouTube &middot; Presentation</span>
+              <span class="pub-note">A tour through the hospital&rsquo;s work in slides, with a greeting from Moses Mugume.</span>
+            </a>
+            <a class="pub-item" href="https://www.youtube.com/watch?v=WWCU2gsqf0k" target="_blank" rel="noopener">
+              <b>Kisiizi Hospital innovations for patient safety</b>
+              <span class="pub-meta">Uganda&ndash;UK Health Alliance &middot; Webinar</span>
+              <span class="pub-note">How patient safety and quality systems were developed at Kisiizi and shared onward.</span>
+            </a>
+            <a class="pub-item" href="https://youtu.be/0_tc_sFZjI0" target="_blank" rel="noopener">
+              <b>Kisiizi Hospital Mothers&rsquo; Waiting Home</b>
+              <span class="pub-meta">Uganda Broadcasting Corporation &middot; 2019 &middot; Documentary</span>
+              <span class="pub-note">A television report on the waiting home that allows mothers to arrive safely ahead of labour.</span>
+            </a>
+            <a class="pub-item" href="https://www.youtube.com/watch?v=iBdvpnxwHlk" target="_blank" rel="noopener">
+              <b>Free fistula treatment at Kisiizi</b>
+              <span class="pub-meta">Uganda Broadcasting Corporation &middot; 2019 &middot; Documentary</span>
+              <span class="pub-note">Coverage of the free obstetric fistula repair offered at the hospital.</span>
+            </a>
+          </div>
+        </details>
+        <details class="pub-group" id="pub-press">
+          <summary><span>In the press<span class="pub-count">4 items</span></span><span class="plus">+</span></summary>
+          <div class="pub-body">
+            <a class="pub-item" href="https://www.kisiizihospital.org.ug/wp-content/uploadedfiles/2013/10/Contact-mag-Dec-2013.pdf" target="_blank" rel="noopener">
+              <b>Contact magazine</b>
+              <span class="pub-meta">World Council of Churches &middot; December 2013 &middot; PDF</span>
+              <span class="pub-note">Kisiizi featured in an edition distributed in English and French to 39 countries.</span>
+            </a>
+            <a class="pub-item" href="https://www.kisiizihospital.org.ug/wp-content/uploadedfiles/2013/10/APPS-News-autumn-13.pdf" target="_blank" rel="noopener">
+              <b>Amplifying the APPS Programme: the cascade effect</b>
+              <span class="pub-meta">WHO Africa Partnerships for Patient Safety &middot; Autumn 2013 &middot; PDF</span>
+              <span class="pub-note">The newsletter&rsquo;s headline article, written by Alia Fry, a Peace Corps volunteer at Kisiizi.</span>
+            </a>
+            <a class="pub-item" href="https://www.kisiizihospital.org.ug/wp-content/uploadedfiles/2013/10/Transformation-UPMB-newsletter-11-2015.pdf" target="_blank" rel="noopener">
+              <b>Transformation: addressing the underlying causes of disease and illness</b>
+              <span class="pub-meta">Uganda Protestant Medical Bureau &middot; November 2015 &middot; PDF</span>
+              <span class="pub-note">On treating the conditions that bring people to hospital in the first place.</span>
+            </a>
+            <a class="pub-item" href="https://www.kisiizihospital.org.ug/wp-content/uploadedfiles/2013/10/RCPCH-Newsletter-Spring-2013_web.pdf" target="_blank" rel="noopener">
+              <b>Royal College of Paediatrics &amp; Child Health newsletter</b>
+              <span class="pub-meta">Spring 2013 &middot; PDF</span>
+              <span class="pub-note">Kisiizi&rsquo;s paediatric work reported to the College&rsquo;s membership.</span>
+            </a>
+          </div>
+        </details>
+      </div>
+
       </div>
     </div>
   </section>
