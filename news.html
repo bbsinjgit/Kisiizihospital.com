@@ -584,25 +584,6 @@
       </div>
 
       <div class="news-grid">
-        <div class="news-card" data-news-id="september-newsletter-2026-09-21" data-news-date="2026-09-21">
-          <div class="date">21 Sept 2026</div>
-          <h4>September Newsletter</h4>
-          <p>Dear Friends of Kisiizi Hospital-Uganda,</p>
-          <p>We are delighted to share with you the latest issue of the Kisiizi Hospital Newsletter, highlighting some of the key developments, achievements, partnerships, and stories from our continuing journey of service.</p>
-          <p>We invite you to take a few moments to read the newsletter, celebrate these milestones with us, and see the difference that your partnership and support continue to make.</p>
-          <p>Also, plan to be part of this year's Friends' Day on 3rd October.....Details are in the Newsletter!</p>
-          <p>Thank you for walking this journey with Kisiizi Hospital.</p>
-          <p>Warm regards,</p>
-          <p>Dr. Henry Lukabwe<br>Medical Superintendent<br>Church of Uganda Kisiizi Hospital</p>
-          <a class="read" href="https://kisiizi-crm.lovable.app/api/public/news-media/1789995915439-9aa27f5f-Kisiizi_Hospital_Newsletter_2026_September.pdf" target="_blank" rel="noopener">Read more &rarr;</a>
-        </div>
-        <div class="news-card" data-news-id="hello-empower-ers-10-000-girls-2026-09-19" data-news-date="2026-09-19">
-          <div class="date">19 Sept 2026</div>
-          <h4>HELLO EMPOWER-ERS! 10,000 girls!</h4>
-          <img src="https://kisiizi-crm.lovable.app/api/public/news-media/1789856404827-e9b7e4ce-IMG_2439.jpeg" alt="HELLO EMPOWER-ERS! 10,000 girls!" style="width:100%;border-radius:10px;margin:10px 0;display:block;" loading="lazy">
-          <p>It was such a joy to be back in Uganda this summer, to<br>visit Empower and to catch up with friends! Whilst there<br>Monica and I celebrated reaching 10,000 women and girls<br>with pad packs! That’s 40,000 pads made and given out<br>and 10,000 women able to have safe, comfortable<br>periods for the next 3 years.</p>
-          <a class="read" href="https://kisiizi-crm.lovable.app/api/public/news-media/1789856330502-39dbaa8d-Empower_nl2.pdf" target="_blank" rel="noopener">Read more &rarr;</a>
-        </div>
         <div class="news-card" data-news-id="leah-update-2026-09" data-news-date="2026-09-01">
           <div class="date">Sept 2026</div>
           <h4>Back in the Emergency Department: an update from nurse Leah Prairie</h4>
@@ -838,7 +819,7 @@
     var submit = document.getElementById('subscribe-submit');
     var status = document.getElementById('subscribe-status');
     var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    var DATA_RE = /(<script type="application\/json" id="subscribers-data">)([\s\S]*?)(<\/script>)/;
+    var SUBSCRIBE_URL = 'https://kisiizi-crm.lovable.app/api/public/subscribe';
 
     function setStatus(msg, cls){
       status.textContent = msg || '';
@@ -853,77 +834,28 @@
         input.focus();
         return;
       }
-      if (!window.claude || typeof window.claude.use !== 'function'){
-        var mailSubject = encodeURIComponent('Please add me to the Kisiizi Hospital news email list');
-        var mailBody = encodeURIComponent('Please add this email address to the news update list: ' + email);
-        window.location.href = 'mailto:Friends.of.kisiizi.hospital@gmail.com?subject=' + mailSubject + '&body=' + mailBody;
-        setStatus('Opening your email app to finish subscribing…', 'ok');
-        input.value = '';
-        return;
-      }
       submit.disabled = true;
       setStatus('Subscribing…');
 
-      var artifact = await window.claude.use('artifact');
-      if (!artifact){
-        setStatus('Subscriptions aren’t available in this view.', 'err');
-        submit.disabled = false;
-        return;
-      }
-      var attempts = 3;
-      var ok = false;
-      var lastErr = null;
-      while (attempts > 0 && !ok){
-        try{
-          var outcome = await attemptSubscribeOnce(email, artifact);
-          ok = true;
-        }catch(err){
-          lastErr = err;
-          if (err && err.code === 'conflict'){
-            attempts -= 1;
-            continue; // re-fetch latest and retry the add
-          }
-          break;
-        }
-      }
+      try{
+        var res = await fetch(SUBSCRIBE_URL, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ email: email })
+        });
+        var data = null;
+        try{ data = await res.json(); }catch(e){ /* non-JSON response */ }
 
-      if (ok){
-        setStatus('Subscribed — thank you! You’ll hear from us when there’s news.', 'ok');
-        input.value = '';
-      } else if (lastErr){
-        var code = lastErr.code;
-        if (code === 'not_writer' || code === 'not_granted' || code === 'capability_disabled' || code === 'not_declared'){
-          setStatus('Subscriptions aren’t available on this view.', 'err');
-        } else if (code === 'rate_limited'){
-          setStatus('Please try again in a moment.', 'err');
+        if (res.ok && data && data.ok){
+          setStatus('Subscribed — thank you! You’ll hear from us when there’s news.', 'ok');
+          input.value = '';
         } else {
-          setStatus('Something went wrong — please try again.', 'err');
+          setStatus((data && data.error) || 'Something went wrong — please try again.', 'err');
         }
-      } else {
-        setStatus('Something went wrong — please try again.', 'err');
+      }catch(err){
+        setStatus('Something went wrong — please check your connection and try again.', 'err');
       }
       submit.disabled = false;
     });
-
-    async function attemptSubscribeOnce(email, artifact){
-      var res = await fetch(location.href, {cache:'no-store'});
-      var html = await res.text();
-      var match = html.match(DATA_RE);
-      if (!match){
-        var e = new Error('no data island'); e.code = 'invalid_content'; throw e;
-      }
-      var list;
-      try{ list = JSON.parse(match[2] || '[]'); }catch(e){ list = []; }
-      if (!Array.isArray(list)) list = [];
-
-      var already = list.some(function(s){ return s && typeof s.email === 'string' && s.email.toLowerCase() === email.toLowerCase(); });
-      if (already) return true;
-
-      list.push({ email: email, subscribedAt: new Date().toISOString() });
-      var newTag = match[1] + JSON.stringify(list) + match[3];
-      var newHtml = html.slice(0, match.index) + newTag + html.slice(match.index + match[0].length);
-
-      return await artifact.publish(newHtml);
-    }
   })();
 </script>
